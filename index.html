@@ -11,7 +11,7 @@
             background: url('Background/bg_image.jpg') no-repeat center center fixed; 
             background-size: cover; 
             display: flex; 
-            justify-content: center; 
+            justify-content: flex-end; /* Shifts the card layout over to the right side */
             align-items: center; 
             height: 100vh; 
             margin: 0; 
@@ -19,12 +19,13 @@
         
         .portal-card { 
             background: rgba(255, 255, 255, 0.95); 
-            padding: 35px; 
+            padding: 40px; 
             border-radius: 12px; 
             box-shadow: 0 8px 24px rgba(0,0,0,0.2); 
             width: 320px; 
             text-align: center;
             backdrop-filter: blur(5px);
+            margin-right: 10%; /* Creates clean spacing from the right edge of the screen */
         }
 
         h2 { margin-bottom: 20px; color: #1a202c; font-size: 24px; }
@@ -50,7 +51,7 @@
 </head>
 <body>
 
-    <!-- A SINGLE CARD CONTAINER THAT DYNAMICALLY UPDATES ITS CONTENT -->
+    <!-- CONTAINER CARD POSITIONED ON THE RIGHT SIDE -->
     <div id="dynamic-card" class="portal-card">
         <h2>Secure Gateway</h2>
         <p style="color: #718096; margin-bottom: 30px; font-size: 14px;">Please select an option to access your dashboard.</p>
@@ -61,7 +62,7 @@
     <script>
         const card = document.getElementById('dynamic-card');
 
-        // 1. Initial Welcome Screen HTML Template
+        // 1. Welcome Screen
         function showWelcome() {
             card.innerHTML = `
                 <h2>Secure Gateway</h2>
@@ -71,7 +72,7 @@
             `;
         }
 
-        // 2. Sign In Options Template
+        // 2. Sign In Options
         function showSignInOptions() {
             card.innerHTML = `
                 <h2>Sign In</h2>
@@ -89,7 +90,7 @@
             `;
         }
 
-        // 3. Mail ID Login Form Template
+        // 3. Mail ID Login Form
         function showMailLogin() {
             card.innerHTML = `
                 <h2>Login with Mail ID</h2>
@@ -110,7 +111,7 @@
             `;
         }
 
-        // 4. Create Account Form Template
+        // 4. Create Account Form
         function showSignUp() {
             card.innerHTML = `
                 <h2>Create Account</h2>
