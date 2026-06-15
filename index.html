@@ -3,39 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Login</title>
+    <title>Secure Access Portal</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .login-card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 300px; }
-        h2 { margin-bottom: 20px; color: #333; text-align: center; }
-        .input-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; color: #666; font-size: 14px; }
-        input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        button { width: 100%; padding: 10px; background-color: #007bff; border: none; color: white; border-radius: 4px; font-size: 16px; cursor: pointer; margin-top: 10px; }
-        button:hover { background-color: #0056b3; }
-        .forgot { text-align: center; margin-top: 15px; font-size: 13px; }
-        .forgot a { color: #007bff; text-decoration: none; }
+        /* Sets your Background folder image as the full-screen background */
+        body { 
+            font-family: Arial, sans-serif; 
+            background: url('Background/bg_image.jpg') no-repeat center center fixed; 
+            background-size: cover; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        
+        .portal-card { 
+            background: rgba(255, 255, 255, 0.95); 
+            padding: 35px; 
+            border-radius: 12px; 
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2); 
+            width: 320px; 
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        h2 { margin-bottom: 25px; color: #1a202c; }
+        .input-group { margin-bottom: 18px; text-align: left; }
+        label { display: block; margin-bottom: 6px; color: #4a5568; font-size: 14px; font-weight: bold; }
+        input { width: 100%; padding: 11px; border: 1px solid #cbd5e0; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
+        
+        /* Interactive Buttons */
+        .btn { width: 100%; padding: 12px; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.2s; }
+        .btn-primary { background-color: #007bff; color: white; }
+        .btn-primary:hover { background-color: #0056b3; }
+        .btn-outline { background-color: transparent; border: 2px solid #007bff; color: #007bff; }
+        .btn-outline:hover { background-color: #007bff; color: white; }
+
+        .hidden { display: none; }
+        .switch-text { margin-top: 20px; font-size: 13px; color: #718096; }
+        .switch-text a { color: #007bff; text-decoration: none; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
 
-<div class="login-card">
-    <h2>Account Login</h2>
-    <form>
-        <div class="input-group">
-            <label>Email Address</label>
-            <input type="email" placeholder="Enter your email" required>
-        </div>
-        <div class="input-group">
-            <label>Password</label>
-            <input type="password" placeholder="Enter your password" required>
-        </div>
-        <button type="submit">Log In</button>
-    </form>
-    <div class="forgot">
-        <a href="#">Forgot Password?</a>
+    <!-- 1. INITIAL WELCOME SCREEN (Sign In / Sign Up Options) -->
+    <div id="welcome-view" class="portal-card">
+        <h2>Secure Gateway</h2>
+        <p style="color: #718096; margin-bottom: 30px; font-size: 14px;">Please select an option to access your dashboard.</p>
+        <button class="btn btn-primary" onclick="showLogin()">Sign In</button>
+        <button class="btn btn-outline" onclick="showLogin()">Sign Up</button>
     </div>
-</div>
+
+    <!-- 2. ACCOUNT LOGIN SCREEN (Appears when clicking Sign Up/Sign In) -->
+    <div id="login-view" class="portal-card hidden">
+        <h2>Account Login</h2>
+        <form onsubmit="event.preventDefault(); alert('Login submitted successfully!');">
+            <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" placeholder="name@example.com" required>
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Proceed to Account</button>
+        </form>
+        <div class="switch-text">
+            <a href="#" onclick="showWelcome()">← Back to options</a>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript logic to manage the page transitions seamlessly
+        function showLogin() {
+            document.getElementById('welcome-view').classList.add('hidden');
+            document.getElementById('login-view').classList.remove('hidden');
+        }
+
+        function showWelcome() {
+            document.getElementById('login-view').classList.add('hidden');
+            document.getElementById('welcome-view').classList.remove('hidden');
+        }
+    </script>
 
 </body>
 </html>
